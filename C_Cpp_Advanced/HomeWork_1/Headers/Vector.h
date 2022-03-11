@@ -35,4 +35,4 @@ void Vector_appendPointer(Vector *vector, int *element);
 void Vector_appendCounter(Vector *vector, int element);
 
 
-#endif //VK_EDUCATION_VECTOR_H
+#endif

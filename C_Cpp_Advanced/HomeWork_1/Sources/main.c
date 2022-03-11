@@ -9,28 +9,21 @@
 #include "../Headers/BarGraph.h"
 
 int main() {
-    /*
-    printf("Enter size of array\n");
-    int size = 0;
-    scanf("%d", &size);
-    int *array = malloc(sizeof(int) * size);
-    printf("%s", "Enter array numbers\n");
-    for (int i = 0; i < size; ++i) {
-        scanf("%d", &array[i]);
+    char *filenameInput = "/home/killoboker/CLionProjects/untitled/C_Cpp_Advanced/HomeWork_1/IO/Input/input01";
+    char *filenameOutput = "/home/killoboker/CLionProjects/untitled/C_Cpp_Advanced/HomeWork_1/IO/Output/output01";
+    int **input = scanArray(filenameInput);
+    if (input == NULL) {
+        fprintf(stderr, "%s Wrong file data", filenameInput);
     }
 
-    printf("printing array\n");
-    for (size_t i = 0; i < size; ++i) {
-        printf("%d ", array[i]);
+    int ***result = getBarGraph(input[1], input[0]);
+    printGraph(result[0], result[1], *input[0], filenameOutput);
+    for (int i = 0; i < 1; ++i) {
+        if (result[i] != NULL)
+            free(result[i]);
+        if (input[i] != NULL)
+            free(input[i]);
     }
-*/
-    const size_t size = 5;
-    int array[] = {19, 1, 10, 1, 1};
-    int ***result = getBarGraph(array, size);
-    printGraph(result[0], result[1], size);
-    if (result[0] != NULL)
-        free(result[0]);
-    if (result[1] != NULL)
-        free(result[1]);
+
     return 0;
 }

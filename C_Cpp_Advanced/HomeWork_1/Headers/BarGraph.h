@@ -10,9 +10,15 @@
 int uniqueElementIndex(int element, Vector *vector);
 
 // Получаем по массиву исходных чисел два - один с указателями на уникальные элементы, другой - с их количеством.
-int ***getBarGraph(int *array, size_t size);
+// Также значение size меняется на количество исходных элементов
+int ***getBarGraph(int *array, size_t *size);
 
-// Красивый вывод графа в консоль. Для этого на вход подаем указатели на массивы уникальных чисел и счетчик.
-void printGraph(int **counter, int **elementsPointer, size_t size);
+// Читает данные из файла, где первый символ - размер массива, остальные - элементы массива. Возвращает двойной
+// указатель. Первый - на размер массива, второй - на сам массив.
+int **scanArray(char *filename);
 
-#endif //UNTITLED_BARGRAPH_H
+// Красивый вывод графа в файл. Для этого на вход подаем указатели на массивы уникальных чисел и счетчик, имя файла вывода
+// вывод: 1 - вывод не удался, 0 - все ок
+int printGraph(int **counter, int **elementsPointer, size_t size, char *filename);
+
+#endif
