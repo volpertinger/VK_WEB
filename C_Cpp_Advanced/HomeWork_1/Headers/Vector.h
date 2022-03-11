@@ -21,10 +21,7 @@ Vector *Vector_constructor(size_t size);
 void Vector_destructor(Vector *vector);
 
 // расширение массив указателей
-void Vector_extendPointers(Vector *vector);
-
-// расширение массива счетчика
-void Vector_counter(Vector *vector);
+void Vector_extend(Vector *vector);
 
 // добавление указатель на элемент
 void Vector_append(Vector *vector, int *pointer);

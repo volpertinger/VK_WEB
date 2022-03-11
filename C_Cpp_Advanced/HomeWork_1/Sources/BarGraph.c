@@ -33,16 +33,13 @@ int **scanArray(char *filename) {
         return NULL;
     }
     int *size = malloc(sizeof(size_t));
-    if (fscanf(input, "%zu", size) == 0) {
-        fprintf(stderr, "%s", "Wrong data");
+    if (fscanf(input, "%zu", size) == 0)
         return NULL;
-    }
     int *array = malloc(sizeof(int) * *size);
     for (size_t i = 0; i < *size; ++i) {
-        if (fscanf(input, "%d", &array[i]) == 0) {
-            fprintf(stderr, "%s", "Wrong data");
-            break;
-        }
+        if (fscanf(input, "%d", &array[i]) == 0)
+            return NULL;
+
     }
     fclose(input);
     int **result = malloc(sizeof(int *) * 2);
