@@ -1,7 +1,7 @@
 #include "../Headers/BarGraph.h"
 
 int uniqueElementIndex(int element, Vector *vector) {
-    for (size_t i = 0; i < vector->sizePointers; ++i) {
+    for (size_t i = 0; i < vector->size; ++i) {
         if (element == *vector->arrayPointers[i])
             return (int) i;
     }
@@ -13,8 +13,7 @@ int ***getBarGraph(int *array, size_t *size) {
     for (size_t i = 0; i < *size; ++i) {
         int index = uniqueElementIndex(array[i], vector);
         if (index == -1) {
-            Vector_appendPointer(vector, &array[i]);
-            Vector_appendCounter(vector, 1);
+            Vector_append(vector, &array[i]);
             continue;
         }
         ++*vector->arrayCounter[index];
@@ -22,7 +21,7 @@ int ***getBarGraph(int *array, size_t *size) {
     int ***result = malloc(sizeof(int ***) * 2);
     result[0] = vector->arrayCounter;
     result[1] = vector->arrayPointers;
-    *size = vector->sizeCounter;
+    *size = vector->size;
     Vector_destructor(vector);
     return result;
 }

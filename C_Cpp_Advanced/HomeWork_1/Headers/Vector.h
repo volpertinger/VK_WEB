@@ -7,10 +7,8 @@
 #define VECTOR_EXTENSION  2;
 
 typedef struct Vector {
-    size_t sizePointers; // размер массива указателей на уникальные числа
-    size_t sizeCounter; // размер массива счетчика количества уникальных чисел
-    size_t maxSizePointers; // выделенная память под массив указателей
-    size_t maxSizeCounter;  // выделенная память под массив счетчика
+    size_t size; // размер массивов указателей на уникальные числа и счетчика
+    size_t maxSize; // выделенная память под массив указателей и массив счетчика
     size_t extension; // коэффициент насколько увеличивать выделяемую память при релоцировании
     int **arrayPointers; // массив указателей на уникальные числа
     int **arrayCounter; // массив счетчика количества уникальных чисел
@@ -29,10 +27,7 @@ void Vector_extendPointers(Vector *vector);
 void Vector_counter(Vector *vector);
 
 // добавление указатель на элемент
-void Vector_appendPointer(Vector *vector, int *element);
-
-// добавление счетчика с исходным значением = element
-void Vector_appendCounter(Vector *vector, int element);
+void Vector_append(Vector *vector, int *pointer);
 
 
 #endif
