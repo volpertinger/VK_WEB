@@ -22,9 +22,9 @@ FetchContent_Declare(
 )
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
-enable_testing()
+#enable_testing()
 add_executable(HW_TESTS ${EXC_HW_1_TEST})
 target_link_libraries(HW_TESTS HW_1_lib gtest_main)
 
-include(GoogleTest)
-gtest_discover_tests(HW_TESTS)
+#include(GoogleTest)
+#gtest_discover_tests(HW_TESTS)
