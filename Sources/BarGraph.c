@@ -9,7 +9,7 @@ int uniqueElementIndex(int element, Vector *vector) {
     return -1;
 }
 
-int ***getBarGraph(int *array, size_t *size) {
+int ***getBarGraph(int *array, int *size) {
     Vector *vector = Vector_constructor(0);
     for (size_t i = 0; i < *size; ++i) {
         int index = uniqueElementIndex(array[i], vector);
@@ -20,9 +20,9 @@ int ***getBarGraph(int *array, size_t *size) {
         ++*vector->arrayCounter[index];
     }
     int ***result = malloc(sizeof(int ***) * 2);
-    result[0] = vector->arrayCounter;
-    result[1] = vector->arrayPointers;
-    *size = vector->size;
+    result[1] = vector->arrayCounter;
+    result[0] = vector->arrayPointers;
+    *size = (int) vector->size;
     Vector_destructor(vector);
     return result;
 }
@@ -34,11 +34,11 @@ int **scanArray(char *filename) {
         return NULL;
     }
     int *size = malloc(sizeof(size_t));
-    if (fscanf(input, "%zu", size) == 0)
+    if (fscanf(input, "%zu", size) == EOF)
         return NULL;
     int *array = malloc(sizeof(int) * *size);
     for (size_t i = 0; i < *size; ++i) {
-        if (fscanf(input, "%d", &array[i]) == 0)
+        if (fscanf(input, "%d", &array[i]) == EOF)
             return NULL;
 
     }
@@ -49,7 +49,7 @@ int **scanArray(char *filename) {
     return result;
 }
 
-int printGraph(int **counter, int **elementsPointer, size_t size, char *filename) {
+int printGraph(int **counter, int **elementsPointer, int size, char *filename) {
     FILE *output = fopen(filename, "w");
     if (output == NULL)
         return 1;

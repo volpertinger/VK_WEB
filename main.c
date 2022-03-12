@@ -25,7 +25,7 @@ int main() {
         return 1;
     }
 
-    int ***result = getBarGraph(input[1], (size_t *) input[0]);
+    int ***result = getBarGraph(input[1], input[0]);
     if (printGraph(result[0], result[1], *input[0], filenameOutput) == 1) {
         fprintf(stderr, "%s : Wrong file\n", filenameOutput);
         return 1;

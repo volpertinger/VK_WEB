@@ -19,6 +19,7 @@ void Vector_destructor(Vector *vector) {
     //   vector->array = NULL;
     //}
     free(vector);
+    vector = NULL;
 }
 
 void Vector_extend(Vector *vector) {
