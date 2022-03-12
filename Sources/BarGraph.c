@@ -1,5 +1,6 @@
 #include "../Headers/BarGraph.h"
 
+
 int uniqueElementIndex(int element, Vector *vector) {
     for (size_t i = 0; i < vector->size; ++i) {
         if (element == *vector->arrayPointers[i])

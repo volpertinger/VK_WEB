@@ -6,25 +6,35 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "../Headers/BarGraph.h"
+#include "Headers/BarGraph.h"
+
+#define MAX_PATH 260
 
 int main() {
-    char *filenameInput = "/home/killoboker/CLionProjects/untitled/C_Cpp_Advanced/HomeWork_1/IO/Input/input01";
-    char *filenameOutput = "/home/killoboker/CLionProjects/untitled/C_Cpp_Advanced/HomeWork_1/IO/Output/output01";
+
+    printf("Correct input: {input filename} {output filename}\n "
+           "Input file: {array size} {array integer elements}\n");
+    char filenameInput[MAX_PATH];
+    char filenameOutput[MAX_PATH];
+    scanf("%s %s", filenameInput, filenameOutput);
+
+
     int **input = scanArray(filenameInput);
     if (input == NULL) {
-        fprintf(stderr, "%s : Wrong file data", filenameInput);
+        fprintf(stderr, "%s : Wrong file data\n", filenameInput);
         return 1;
     }
 
-    int ***result = getBarGraph(input[1], input[0]);
-    printGraph(result[0], result[1], *input[0], filenameOutput);
+    int ***result = getBarGraph(input[1], (size_t *) input[0]);
+    if (printGraph(result[0], result[1], *input[0], filenameOutput) == 1) {
+        fprintf(stderr, "%s : Wrong file\n", filenameOutput);
+        return 1;
+    }
     for (int i = 0; i < 1; ++i) {
         if (result[i] != NULL)
             free(result[i]);
         if (input[i] != NULL)
             free(input[i]);
     }
-
     return 0;
 }

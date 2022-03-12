@@ -1,5 +1,6 @@
 #include "../Headers/Vector.h"
 
+
 Vector *Vector_constructor(size_t size) {
     Vector *result = malloc(sizeof(Vector));
     result->size = 0;

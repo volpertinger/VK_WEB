@@ -1,10 +1,10 @@
 #ifndef VK_EDUCATION_VECTOR_H
 #define VK_EDUCATION_VECTOR_H
 
+#define VECTOR_EXTENSION  2;
+
 #include <stdio.h>
 #include <stdlib.h>
-
-#define VECTOR_EXTENSION  2;
 
 typedef struct Vector {
     size_t size; // размер массивов указателей на уникальные числа и счетчика
