@@ -34,7 +34,7 @@ int **scanArray(char *filename) {
         return NULL;
     }
     int *size = malloc(sizeof(size_t));
-    if (fscanf(input, "%zu", size) == EOF)
+    if (fscanf(input, "%d", size) == EOF)
         return NULL;
     int *array = malloc(sizeof(int) * *size);
     for (size_t i = 0; i < *size; ++i) {

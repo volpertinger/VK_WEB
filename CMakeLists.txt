@@ -26,5 +26,12 @@ FetchContent_MakeAvailable(googletest)
 add_executable(HW_TESTS ${EXC_HW_1_TEST})
 target_link_libraries(HW_TESTS HW_1_lib gtest_main)
 
+add_executable(check ${EXC_HW_1_TEST})
+target_link_libraries(check HW_1_lib gtest_main)
+add_executable(tests ${EXC_HW_1_TEST})
+target_link_libraries(tests HW_1_lib gtest_main)
+add_executable(build ${EXC_HW_1_TEST})
+target_link_libraries(build HW_1_lib gtest_main)
+
 #include(GoogleTest)
 #gtest_discover_tests(HW_TESTS)
