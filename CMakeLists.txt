@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.21)
+cmake_minimum_required(VERSION 3.9)
 project(VK_education_C_Cxx)
 
 set(CMAKE_CXX_STANDARD 11)
