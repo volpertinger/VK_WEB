@@ -20,10 +20,15 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           path: tests
-  check:
+  coverage:
     runs-on: ubuntu-latest
     container: killoboker/gcc-latest
     steps:
       - uses: actions/checkout@v2
       - run: cmake .
       - run: cmake build .
+      - run: ./tests
+      - run: lcov -t "coverageTests" -o coverage.info -c -d CMakeFiles/tests.dir/Tests/
+      - run: genhtml -o report coverage.info
+
+
