@@ -18,7 +18,7 @@ jobs:
       - run: cd build
       - run: cmake .
       - run: cmake build .
-      - run: VK_WEB//tests
+      - run: VK_WEB/tests
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
