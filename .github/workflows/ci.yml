@@ -35,6 +35,6 @@ jobs:
     container: killoboker/gcc-latest
     steps:
       - uses: actions/checkout@v2
-      - run: ./linters/run.sh
+      - run: cppcheck --quiet Sources/ Headers/
 
 
