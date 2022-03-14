@@ -57,10 +57,14 @@ protected:
     char *filenameOutputExpect;
 
     void SetUp() {
-        filenameInput = "/home/killoboker/CLionProjects/untitled/Tests/IO/Input/inputCorrect";
-        filenameInputWrong = "/home/killoboker/CLionProjects/untitled/Tests/IO/Input/inputWrong";
-        filenameOutput = "/home/killoboker/CLionProjects/untitled/Tests/IO/Output/output";
-        filenameOutputExpect = "/home/killoboker/CLionProjects/untitled/Tests/IO/Output/outputExpected";
+        std::string str = "../Tests/IO/Input/inputCorrect";
+        filenameInput = strdup(str.c_str());
+        str = "../Tests/IO/Input/inputWrong";
+        filenameInputWrong = strdup(str.c_str());
+        str = "../Tests/IO/Output/output";
+        filenameOutput = strdup(str.c_str());
+        str = "../Tests/IO/Output/outputExpected";
+        filenameOutputExpect = strdup(str.c_str());
     }
 
     void TearDown() {}
