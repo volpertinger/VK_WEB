@@ -30,5 +30,11 @@ jobs:
       - run: ./tests
       - run: lcov -t "coverageTests" -o coverage.info -c -d CMakeFiles/tests.dir/Tests/
       - run: genhtml -o report coverage.info
+  linters:
+    runs-on: ubuntu-latest
+    container: killoboker/gcc-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: ./linters/run.sh
 
 
