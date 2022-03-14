@@ -11,14 +11,13 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container: killoboker/gcc-latest
-    needs: [ build ]
     steps:
       - uses: actions/checkout@v2
       - run: mkdir build
       - run: cd build
       - run: cmake .
       - run: cmake build .
-      - run: VK_WEB/tests
+      - run: /__w/VK_WEB/VK_WEB/tests
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
@@ -26,7 +25,6 @@ jobs:
   check:
     runs-on: ubuntu-latest
     container: killoboker/gcc-latest
-    needs: [ build ]
     steps:
       - uses: actions/checkout@v2
       - run: cmake .
