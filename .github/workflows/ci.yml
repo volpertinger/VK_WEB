@@ -8,6 +8,9 @@ jobs:
       - uses: actions/checkout@v2
       - run: cmake .
       - run: cmake build .
+      - run: cd Tests/
+      - run: cmake .
+      - run: cmake --build .
   test:
     runs-on: ubuntu-latest
     container: killoboker/gcc-latest
@@ -26,6 +29,7 @@ jobs:
     container: killoboker/gcc-latest
     steps:
       - uses: actions/checkout@v2
+      - run: cd Tests/
       - run: cmake .
       - run: cmake --build .
       - run: ./tests
