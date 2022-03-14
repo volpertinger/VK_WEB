@@ -1,24 +1,12 @@
 on: push
 
 jobs:
-  check:
-    runs-on: ubuntu-latest
-    container: killoboker/gcc-latest
-    steps:
-      - uses: actions/checkout@v2
-      - run: cmake .
   build:
     runs-on: ubuntu-latest
     container: killoboker/gcc-latest
-    needs: [ check ]
     steps:
       - uses: actions/checkout@v2
       - run: cmake .
-      - run: make build
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          path: main.out
   test:
     runs-on: ubuntu-latest
     container: killoboker/gcc-latest
@@ -26,4 +14,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: cmake .
-      - run: make test
+      - run: ./tests
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          path: tests
+  check:
+    runs-on: ubuntu-latest
+    container: killoboker/gcc-latest
+    needs: [ build ]
+    steps:
+      - uses: actions/checkout@v2
+      - run: cmake .

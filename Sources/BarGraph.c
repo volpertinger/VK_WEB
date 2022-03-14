@@ -46,7 +46,7 @@ int **scanArray(char *filename) {
     int **result = malloc(sizeof(int *) * 2);
     result[0] = size;
     result[1] = array;
-    return result;
+   return result;
 }
 
 int printGraph(int **counter, int **elementsPointer, int size, char *filename) {
