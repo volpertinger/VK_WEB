@@ -57,7 +57,8 @@ protected:
     char *filenameOutputExpect;
 
     void SetUp() {
-        std::string str = "../Tests/IO/Input/inputCorrect";
+        // /home/killoboker/CLionProjects/untitled/Tests/IO/Input/inputCorrect
+        std::string str = std::string(__FILE__) + "/../IO/Input/inputCorrect";
         filenameInput = strdup(str.c_str());
         str = "../Tests/IO/Input/inputWrong";
         filenameInputWrong = strdup(str.c_str());
@@ -79,9 +80,9 @@ TEST_F(TestBarGraph, uniqueElementIndex) {
         Vector_append(vector, &a[i]);
     }
     ASSERT_EQ(2, uniqueElementIndex(2, vector));
-    ASSERT_EQ(-11, uniqueElementIndex(20, vector));
+    ASSERT_EQ(-1, uniqueElementIndex(20, vector));
 }
-/*
+
 TEST_F(TestBarGraph, scanArray) {
     int **result = scanArray(filenameInput);
     ASSERT_EQ(10, *result[0]);
@@ -91,7 +92,7 @@ TEST_F(TestBarGraph, scanArray) {
     }
     ASSERT_EQ(0, result[1][size - 1]);
 }
-*/
+
 TEST_F(TestBarGraph, scanArrayEmpty) {
     int **result = scanArray(filenameInputWrong);
     ASSERT_EQ(nullptr, result);
@@ -120,6 +121,7 @@ TEST_F(TestBarGraph, getBarGraph) {
     ASSERT_EQ(1, *result[1][6]);
     ASSERT_EQ(1, *result[1][7]);
 }
+
 /*
 TEST_F(TestBarGraph, printGraph) {
     int **scannedArray = scanArray(filenameInput);
