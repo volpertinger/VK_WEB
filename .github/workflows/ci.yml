@@ -16,8 +16,8 @@ jobs:
       - run: mkdir build
       - run: cd build
       - run: cmake .
-      - run: cmake build .
-      - run: /__w/VK_WEB/VK_WEB/tests
+      - run: cmake --build .
+      - run: ./tests
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
