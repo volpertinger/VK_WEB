@@ -14,11 +14,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: cmake .
-      - run: ./tests
+      - run: cmake-build-debug/tests
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          path: tests
+          path: cmake-build-debug/tests
   check:
     runs-on: ubuntu-latest
     container: killoboker/gcc-latest
