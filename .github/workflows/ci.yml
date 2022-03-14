@@ -13,9 +13,10 @@ jobs:
     container: killoboker/gcc-latest
     steps:
       - uses: actions/checkout@v2
+      - run: ls
       - run: mkdir build
       - run: cd build
-      - run: cmake ../
+      - run: cmake .
       - run: cmake --build .
       - run: ./tests
       - name: Upload artifacts
