@@ -7,7 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: cmake .
-      - run: cmake build .
+      - run: cmake --build .
       - run: cd Tests/
       - run: cmake .
       - run: cmake --build .
