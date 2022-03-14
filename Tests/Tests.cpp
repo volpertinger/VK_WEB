@@ -81,7 +81,7 @@ TEST_F(TestBarGraph, uniqueElementIndex) {
     ASSERT_EQ(2, uniqueElementIndex(2, vector));
     ASSERT_EQ(-1, uniqueElementIndex(20, vector));
 }
-/*
+
 TEST_F(TestBarGraph, scanArray) {
     int **result = scanArray(filenameInput);
     ASSERT_EQ(10, *result[0]);
@@ -89,9 +89,9 @@ TEST_F(TestBarGraph, scanArray) {
     for (int i = 0; i < size - 1; ++i) {
         ASSERT_EQ(i * 2, result[1][i]);
     }
-    ASSERT_EQ(0, result[1][size - 1]);
+    ASSERT_EQ(1, result[1][size - 1]);
 }
-*/
+
 TEST_F(TestBarGraph, scanArrayEmpty) {
     int **result = scanArray(filenameInputWrong);
     ASSERT_EQ(nullptr, result);
