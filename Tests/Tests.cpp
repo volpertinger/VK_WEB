@@ -120,7 +120,7 @@ TEST_F(TestBarGraph, getBarGraph) {
     ASSERT_EQ(1, *result[1][6]);
     ASSERT_EQ(1, *result[1][7]);
 }
-
+/*
 TEST_F(TestBarGraph, printGraph) {
     int **scannedArray = scanArray(filenameInput);
     int *size = scannedArray[0];
@@ -136,7 +136,7 @@ TEST_F(TestBarGraph, printGraph) {
     }
 
 }
-
+*/
 
 int main() {
     testing::InitGoogleTest();
