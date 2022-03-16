@@ -93,14 +93,6 @@ TEST_F(TestBarGraph, scanArray) {
 }
 */
 
-TEST_F(TestBarGraph, scanArrayEmpty) {
-    FILE *inputWrong;
-    inputWrong = fopen(filenameInputWrong, "r");
-    int ***result = scanArray(inputWrong);
-    ASSERT_EQ(nullptr, result);
-    fclose(inputWrong);
-}
-
 TEST_F(TestBarGraph, getBarGraph) {
     const int constSize = 10;
     int size = constSize;
