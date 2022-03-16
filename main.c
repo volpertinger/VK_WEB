@@ -19,7 +19,8 @@ int main() {
     scanf("%s %s", filenameInput, filenameOutput);
 
 
-    FILE *inputFile = fopen(filenameInput, "r");
+    FILE *inputFile;
+    inputFile = fopen(filenameInput, "r");
     int ***input = scanArray(inputFile);
     if (input == NULL) {
         fprintf(stderr, "%s : Wrong file data\n", filenameInput);
@@ -27,7 +28,8 @@ int main() {
     }
 
     int ***result = getBarGraph(input[1], *input[0]);
-    FILE *fileOutput = fopen(filenameOutput, "w");
+    FILE *fileOutput;
+    filenameOutput =  = fopen(filenameOutput, "w");
     if (printGraph(fileOutput, result[0], result[1], **input[0]) == 1) {
         fprintf(stderr, "%s : Wrong file\n", filenameOutput);
         return 1;

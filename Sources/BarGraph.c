@@ -40,7 +40,6 @@ int ***scanArray(FILE *input) {
     for (size_t i = 0; i < *size; ++i) {
         if (fscanf(input, "%d", &array[i]) == EOF)
             return NULL;
-
     }
     fclose(input);
     int ***result = malloc(sizeof(int **) * 2);

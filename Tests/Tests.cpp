@@ -94,7 +94,8 @@ TEST_F(TestBarGraph, scanArray) {
 */
 
 TEST_F(TestBarGraph, scanArrayEmpty) {
-    FILE *inputWrong = fopen(filenameInputWrong, "r");
+    FILE *inputWrong;
+    inputWrong = fopen(filenameInputWrong, "r");
     int ***result = scanArray(inputWrong);
     ASSERT_EQ(NULL, result);
     fclose(inputWrong);
