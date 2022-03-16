@@ -34,6 +34,8 @@ int **scanArray(char *filename) {
         return NULL;
     }
     int *size = malloc(sizeof(size_t));
+    if (size == NULL)
+        return NULL;
     if (fscanf(input, "%d", size) == EOF)
         return NULL;
     int *array = malloc(sizeof(int) * *size);
@@ -46,7 +48,7 @@ int **scanArray(char *filename) {
     int **result = malloc(sizeof(int *) * 2);
     result[0] = size;
     result[1] = array;
-   return result;
+    return result;
 }
 
 int printGraph(int **counter, int **elementsPointer, int size, char *filename) {
