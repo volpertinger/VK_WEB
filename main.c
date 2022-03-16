@@ -29,7 +29,7 @@ int main() {
 
     int ***result = getBarGraph(input[1], *input[0]);
     FILE *fileOutput;
-    filenameOutput =  = fopen(filenameOutput, "w");
+    fileOutput = fopen(filenameOutput, "w");
     if (printGraph(fileOutput, result[0], result[1], **input[0]) == 1) {
         fprintf(stderr, "%s : Wrong file\n", filenameOutput);
         return 1;
