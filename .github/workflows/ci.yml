@@ -36,6 +36,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: cppcheck --quiet Sources/ Headers/
+      - run: cpplint Sources/*.c Headers/*.h
   valgrind:
     runs-on: ubuntu-latest
     container: killoboker/gcc-latest
