@@ -19,14 +19,14 @@ int main() {
     scanf("%s %s", filenameInput, filenameOutput);
 
 
-    int **input = scanArray(filenameInput);
+    int ***input = scanArray(filenameInput);
     if (input == NULL) {
         fprintf(stderr, "%s : Wrong file data\n", filenameInput);
         return 1;
     }
 
-    int ***result = getBarGraph(input[1], input[0]);
-    if (printGraph(result[0], result[1], *input[0], filenameOutput) == 1) {
+    int ***result = getBarGraph(input[1], *input[0]);
+    if (printGraph(result[0], result[1], **input[0], filenameOutput) == 1) {
         fprintf(stderr, "%s : Wrong file\n", filenameOutput);
         return 1;
     }

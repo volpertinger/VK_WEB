@@ -18,7 +18,7 @@ typedef struct Vector {
 Vector *Vector_constructor(size_t size);
 
 // деструктор
-void Vector_destructor(Vector *vector);
+void Vector_partDestructor(Vector *vector);
 
 // расширение массив указателей
 void Vector_extend(Vector *vector);

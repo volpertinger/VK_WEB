@@ -4,8 +4,6 @@
 Vector *Vector_constructor(size_t size) {
     Vector *result = malloc(sizeof(Vector));
     result->size = 0;
-    if (size == 0)
-        size = 1;
     result->maxSize = size;
     result->extension = VECTOR_EXTENSION;
     result->arrayPointers = malloc(sizeof(int *) * result->maxSize);
@@ -13,17 +11,16 @@ Vector *Vector_constructor(size_t size) {
     return result;
 }
 
-void Vector_destructor(Vector *vector) {
-    //if (vector->array != NULL) {
-    //   free(vector->array);
-    //   vector->array = NULL;
-    //}
+void Vector_partDestructor(Vector *vector) {
+    //if (vector->arrayPointers != NULL)
+    //    free(vector->arrayPointers);
+    //if (vector->arrayCounter != NULL)
+    //    free(vector->arrayCounter);
     free(vector);
-    vector = NULL;
 }
 
 void Vector_extend(Vector *vector) {
-    vector->maxSize = vector->maxSize * vector->extension;
+    vector->maxSize = vector->maxSize * vector->extension + 1;
     int **newArrayPointers = malloc(sizeof(int *) * vector->maxSize);
     int **newArrayCounter = malloc(sizeof(int *) * vector->maxSize);
     for (size_t i = 0; i < vector->size; ++i) {
