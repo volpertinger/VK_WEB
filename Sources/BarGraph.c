@@ -33,21 +33,19 @@ int ***scanArray(FILE *input) {
     if (input == NULL) {
         return NULL;
     }
-    int **size = malloc(sizeof(size_t *));
-    if (*size == NULL)
+    int *size = malloc(sizeof(int));
+    if (fscanf(input, "%d", size) == EOF)
         return NULL;
-    if (fscanf(input, "%d", *size) == EOF)
-        return NULL;
-    int **array = malloc(sizeof(int *) * **size);
-    for (size_t i = 0; i < **size; ++i) {
-        if (fscanf(input, "%d", array[i]) == EOF)
+    int *array = malloc(sizeof(int) * (*size));
+    for (size_t i = 0; i < *size; ++i) {
+        if (fscanf(input, "%d", &array[i]) == EOF)
             return NULL;
 
     }
     fclose(input);
     int ***result = malloc(sizeof(int **) * 2);
-    result[0] = size;
-    result[1] = array;
+    result[0] = &size;
+    result[1] = &array;
     return result;
 }
 
