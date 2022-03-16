@@ -57,7 +57,6 @@ protected:
     char *filenameOutputExpect;
 
     void SetUp() {
-        // /home/killoboker/CLionProjects/untitled/Tests/IO/Input/inputCorrect
         std::string str = std::string(__FILE__) + "/../IO/Input/inputCorrect";
         filenameInput = strdup(str.c_str());
         str = "../Tests/IO/Input/inputWrong";
@@ -93,9 +92,12 @@ TEST_F(TestBarGraph, scanArray) {
     ASSERT_EQ(0, result[1][size - 1]);
 }
 */
+
 TEST_F(TestBarGraph, scanArrayEmpty) {
-    int ***result = scanArray(filenameInputWrong);
-    ASSERT_EQ(nullptr, result);
+    FILE *inputWrong = fopen(filenameInputWrong, "r");
+    int ***result = scanArray(inputWrong);
+    ASSERT_EQ(NULL, result);
+    fclose(inputWrong);
 }
 
 TEST_F(TestBarGraph, getBarGraph) {

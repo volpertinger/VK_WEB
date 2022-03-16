@@ -29,18 +29,16 @@ int ***getBarGraph(int **array, int *size) {
     return result;
 }
 
-int ***scanArray(char *filename) {
-    FILE *input;
-    input = fopen(filename, "r");
+int ***scanArray(FILE *input) {
     if (input == NULL) {
         return NULL;
     }
     int **size = malloc(sizeof(size_t *));
-    if (size == NULL)
+    if (*size == NULL)
         return NULL;
     if (fscanf(input, "%d", *size) == EOF)
         return NULL;
-    int **array = malloc(sizeof(int*) * **size);
+    int **array = malloc(sizeof(int *) * **size);
     for (size_t i = 0; i < **size; ++i) {
         if (fscanf(input, "%d", array[i]) == EOF)
             return NULL;
@@ -53,8 +51,7 @@ int ***scanArray(char *filename) {
     return result;
 }
 
-int printGraph(int **counter, int **elementsPointer, int size, char *filename) {
-    FILE *output = fopen(filename, "w");
+int printGraph(FILE *output, int **counter, int **elementsPointer, int size) {
     if (output == NULL)
         return 1;
     for (size_t i = 0; i < size; ++i) {

@@ -15,10 +15,10 @@ int ***getBarGraph(int **array, int *size);
 
 // Читает данные из файла, где первый символ - размер массива, остальные - элементы массива. Возвращает двойной
 // указатель. Первый - на размер массива, второй - на сам массив.
-int ***scanArray(char *filename);
+int ***scanArray(FILE *file);
 
 // Красивый вывод графа в файл. Для этого на вход подаем указатели на массивы уникальных чисел и счетчик, имя файла вывода
 // вывод: 1 - вывод не удался, 0 - все ок
-int printGraph(int **counter, int **elementsPointer, int size, char *filename);
+int printGraph(FILE *output, int **counter, int **elementsPointer, int size);
 
 #endif
