@@ -46,8 +46,8 @@ jobs:
       - run: ./tests
       - run: valgrind --track-origins=yes --leak-check=full ./tests
       - name: Upload artifacts
-          uses: actions/upload-artifact@v2
-          with:
-            path: main.out
+        uses: actions/upload-artifact@v2
+        with:
+          path: main.out
 
 
