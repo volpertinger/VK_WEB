@@ -30,6 +30,10 @@ jobs:
       - run: ./tests
       - run: lcov -t "coverageTests" -o coverage.info -c -d CMakeFiles/tests.dir/Tests/
       - run: genhtml -o report coverage.info
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+          with:
+          path: ./report/
   linter:
     runs-on: ubuntu-latest
     container: killoboker/gcc-latest
@@ -50,6 +54,6 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          path: ./tests
+          file: ./tests
 
 
