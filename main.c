@@ -22,6 +22,7 @@ int main() {
     FILE *inputFile;
     inputFile = fopen(filenameInput, "r");
     int ***input = scanArray(inputFile);
+    fclose(inputFile);
     if (input == NULL) {
         fprintf(stderr, "%s : Wrong file data\n", filenameInput);
         return 1;
@@ -34,6 +35,7 @@ int main() {
         fprintf(stderr, "%s : Wrong file\n", filenameOutput);
         return 1;
     }
+    fclose(filenameOutput);
     for (int i = 0; i < 1; ++i) {
         if (result[i] != NULL)
             free(result[i]);

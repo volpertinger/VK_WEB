@@ -81,17 +81,7 @@ TEST_F(TestBarGraph, uniqueElementIndex) {
     ASSERT_EQ(2, uniqueElementIndex(2, vector));
     ASSERT_EQ(-1, uniqueElementIndex(20, vector));
 }
-/*
-TEST_F(TestBarGraph, scanArray) {
-    int ***result = scanArray(filenameInput);
-    ASSERT_EQ(10, **result[0]);
-    int size = **result[0];
-    for (int i = 0; i < size - 1; ++i) {
-        ASSERT_EQ(i * 2, *result[1][i]);
-    }
-    ASSERT_EQ(0, result[1][size - 1]);
-}
-*/
+
 
 TEST_F(TestBarGraph, getBarGraph) {
     const int constSize = 10;
@@ -127,23 +117,6 @@ TEST_F(TestBarGraph, getBarGraph) {
     ASSERT_EQ(1, *result[1][6]);
     ASSERT_EQ(1, *result[1][7]);
 }
-
-/*
-TEST_F(TestBarGraph, printGraph) {
-    int ***scannedArray = scanArray(filenameInput);
-    int ***result = getBarGraph(scannedArray[1], *scannedArray[0]);
-    printGraph(result[1], result[0], **scannedArray[0], filenameOutput);
-    std::ifstream output(filenameOutput);
-    std::ifstream outputExpect(filenameOutputExpect);
-    std::string outputLine;
-    std::string outputLineExpected;
-    while (std::getline(output, outputLine)) {
-        std::getline(outputExpect, outputLineExpected);
-        ASSERT_EQ(outputLineExpected, outputLine);
-    }
-
-}
-*/
 
 int main() {
     testing::InitGoogleTest();

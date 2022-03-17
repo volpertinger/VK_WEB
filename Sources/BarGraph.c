@@ -1,5 +1,7 @@
 #include "../Headers/BarGraph.h"
 
+#define BAD_FILE_STREAM_EXIT 1
+#define COMMON_EXIT 0
 
 int uniqueElementIndex(int element, Vector *vector) {
     for (size_t i = 0; i < vector->size; ++i) {
@@ -38,10 +40,9 @@ int ***scanArray(FILE *input) {
         return NULL;
     int *array = malloc(sizeof(int) * (*size));
     for (size_t i = 0; i < *size; ++i) {
-        if (fscanf(input, "%d", &array[i]) == EOF)
+        if (fscanf(input, "%d", array + i) == EOF)
             return NULL;
     }
-    fclose(input);
     int ***result = malloc(sizeof(int **) * 2);
     result[0] = &size;
     result[1] = &array;
@@ -50,7 +51,7 @@ int ***scanArray(FILE *input) {
 
 int printGraph(FILE *output, int **counter, int **elementsPointer, int size) {
     if (output == NULL)
-        return 1;
+        return BAD_FILE_STREAM_EXIT;
     for (size_t i = 0; i < size; ++i) {
         fprintf(output, "number %d", *elementsPointer[i]);
         fprintf(output, " : ");
@@ -58,5 +59,5 @@ int printGraph(FILE *output, int **counter, int **elementsPointer, int size) {
         fprintf(output, "%c", '\n');
     }
     fclose(output);
-    return 0;
+    return COMMON_EXIT;
 }
