@@ -51,20 +51,8 @@ TEST_F(TestVector, extend) {
 
 class TestBarGraph : public ::testing::Test {
 protected:
-    char *filenameInput;
-    char *filenameInputWrong;
-    char *filenameOutput;
-    char *filenameOutputExpect;
 
     void SetUp() {
-        std::string str = std::string(__FILE__) + "/../IO/Input/inputCorrect";
-        filenameInput = strdup(str.c_str());
-        str = "../Tests/IO/Input/inputWrong";
-        filenameInputWrong = strdup(str.c_str());
-        str = "../Tests/IO/Output/output";
-        filenameOutput = strdup(str.c_str());
-        str = "../Tests/IO/Output/outputExpected";
-        filenameOutputExpect = strdup(str.c_str());
     }
 
     void TearDown() {}
@@ -80,6 +68,9 @@ TEST_F(TestBarGraph, uniqueElementIndex) {
     }
     ASSERT_EQ(2, uniqueElementIndex(2, vector));
     ASSERT_EQ(-1, uniqueElementIndex(20, vector));
+    free(vector->arrayCounter);
+    free(vector->arrayPointers);
+    Vector_partDestructor(vector);
 }
 
 
@@ -116,6 +107,7 @@ TEST_F(TestBarGraph, getBarGraph) {
     ASSERT_EQ(1, *result[1][5]);
     ASSERT_EQ(1, *result[1][6]);
     ASSERT_EQ(1, *result[1][7]);
+    free(result);
 }
 
 int main() {
