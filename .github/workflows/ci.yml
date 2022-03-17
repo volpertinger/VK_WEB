@@ -24,7 +24,7 @@ jobs:
       - run: cmake .
       - run: cmake --build .
       - run: ./tests
-      - run: lcov -t "coverageTests" -o coverage.info -c -d CMakeFiles/tests.dir/Tests/
+      - run: lcov -t "coverageTests" -o coverage.info -c -d CMakeFiles/lib.dir/Sources/
       - run: genhtml -o report coverage.info
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
