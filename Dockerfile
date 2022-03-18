@@ -8,4 +8,4 @@ RUN wget https://sourceware.org/pub/valgrind/valgrind-3.18.1.tar.bz2 && \
     ./autogen.sh && \
     ./configure && \
     make && \
-    make install
+    make install \

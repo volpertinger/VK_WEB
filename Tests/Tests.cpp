@@ -2,16 +2,16 @@
 #include <fstream>
 
 extern "C" {
-#include "../Headers/Vector.h"
+#include "../Headers/Histogram.h"
 #include "../Headers/BarGraph.h"
 }
 
 class TestVector : public ::testing::Test {
 protected:
-    Vector *vector{};
+    Histogram *vector{};
 
     void SetUp() {
-        vector = Vector_constructor(0);
+        vector = Histogram_constructor(0);
     }
 
     void TearDown() {
@@ -21,7 +21,7 @@ protected:
         }
         free(vector->arrayCounter);
         free(vector->arrayPointers);
-        Vector_partDestructor(vector);
+        free(vector);
     }
 };
 
@@ -36,7 +36,7 @@ TEST_F(TestVector, append) {
     int a[size];
     for (int i = 0; i < size; ++i) {
         a[i] = i;
-        Vector_append(vector, &a[i]);
+        Histogram_append(vector, &a[i]);
         ASSERT_EQ(&a[i], vector->arrayPointers[i]);
         ASSERT_EQ(1, *vector->arrayCounter[i]);
     }
@@ -47,7 +47,7 @@ TEST_F(TestVector, extend) {
     int a[size];
     for (int i = 0; i < size; ++i) {
         a[i] = i;
-        Vector_append(vector, &a[i]);
+        Histogram_append(vector, &a[i]);
     }
     ASSERT_EQ(5, vector->size);
     ASSERT_EQ(7, vector->maxSize);
@@ -56,26 +56,26 @@ TEST_F(TestVector, extend) {
 class TestBarGraph : public ::testing::Test {
 };
 
-TEST_F(TestBarGraph, uniqueElementIndex) {
-    Vector *vector = Vector_constructor(0);
+TEST_F(TestBarGraph, unique_element_index) {
+    Histogram *vector = Histogram_constructor(0);
     const int size = 5;
     int a[size];
     for (int i = 0; i < size; ++i) {
         a[i] = i;
-        Vector_append(vector, &a[i]);
+        Histogram_append(vector, &a[i]);
     }
-    ASSERT_EQ(2, uniqueElementIndex(2, vector));
-    ASSERT_EQ(-1, uniqueElementIndex(20, vector));
+    ASSERT_EQ(2, unique_element_index(2, vector));
+    ASSERT_EQ(-1, unique_element_index(20, vector));
     for (int i = 0; i < size; ++i) {
         free(vector->arrayCounter[i]);
     }
     free(vector->arrayCounter);
     free(vector->arrayPointers);
-    Vector_partDestructor(vector);
+    free(vector);
 }
 
 
-TEST_F(TestBarGraph, getBarGraph) {
+TEST_F(TestBarGraph, get_bar_graph) {
     const int constSize = 10;
     int size = constSize;
 
@@ -90,7 +90,7 @@ TEST_F(TestBarGraph, getBarGraph) {
     int arr_8 = 90;
     int arr_9 = 0;
     int *array[constSize] = {&arr_0, &arr_1, &arr_2, &arr_3, &arr_4, &arr_5, &arr_6, &arr_7, &arr_8, &arr_9};
-    int ***result = getBarGraph(array, &size);
+    int ***result = get_bar_graph(array, &size);
     ASSERT_EQ(array[0], result[0][0]);
     ASSERT_EQ(array[2], result[0][1]);
     ASSERT_EQ(array[4], result[0][2]);
@@ -108,7 +108,7 @@ TEST_F(TestBarGraph, getBarGraph) {
     ASSERT_EQ(1, *result[1][5]);
     ASSERT_EQ(1, *result[1][6]);
     ASSERT_EQ(1, *result[1][7]);
-    for(int i=0;i<size;++i){
+    for (int i = 0; i < size; ++i) {
         free(result[1][i]);
     }
     free(result[0]);

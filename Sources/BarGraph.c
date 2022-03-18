@@ -1,48 +1,52 @@
 #include "../Headers/BarGraph.h"
 
 #define BAD_FILE_STREAM_EXIT 1
-#define COMMON_EXIT 0
+#define COMMON_RETURN 0
 
-int uniqueElementIndex(int element, Vector *vector) {
+int unique_element_index(int element, Histogram *vector) {
     for (size_t i = 0; i < vector->size; ++i) {
-        if (element == *vector->arrayPointers[i])
+        if (element == (*vector->arrayPointers[i]))
             return (int) i;
     }
     return -1;
 }
 
-int ***getBarGraph(int **array, int *size) {
-    if (size < 0)
+int ***get_bar_graph(int **array, int *size) {
+    if (size < 0 || array == NULL) {
         return NULL;
-    Vector *vector = Vector_constructor(0);
+    }
+    Histogram *vector = Histogram_constructor(0);
     for (size_t i = 0; i < *size; ++i) {
-        int index = uniqueElementIndex(*array[i], vector);
+        int index = unique_element_index(*array[i], vector);
         if (index == -1) {
-            Vector_append(vector, array[i]);
+            Histogram_append(vector, array[i]);
             continue;
         }
         ++(*vector->arrayCounter[index]);
     }
-    int ***result = malloc(sizeof(int ***) * 2);
+    int ***result;
+    result = malloc(sizeof(int ***) * 2);
     result[1] = vector->arrayCounter;
     result[0] = vector->arrayPointers;
     *size = (int) vector->size;
-    Vector_partDestructor(vector);
+    free(vector);
     return result;
 }
 
-int ***scanArray(FILE *input) {
+int ***scan_array(FILE *input) {
     if (input == NULL) {
         return NULL;
     }
-    int *size = malloc(sizeof(int));
+    int *size;
+    size = malloc(sizeof(int));
     if (fscanf(input, "%d", size) == EOF) {
         free(size);
         return NULL;
     }
     int **array = malloc(sizeof(int *) * (*size));
     for (size_t i = 0; i < *size; ++i) {
-        int *element = malloc(sizeof(int));
+        int *element;
+        element = malloc(sizeof(int));
         if (fscanf(input, "%d", element) == EOF) {
             free(size);
             free(array);
@@ -50,13 +54,14 @@ int ***scanArray(FILE *input) {
         }
         array[i] = element;
     }
-    int ***result = malloc(sizeof(int **) * 2);
+    int ***result;
+    result = malloc(sizeof(int **) * 2);
     result[0] = &size;
     result[1] = array;
     return result;
 }
 
-int printGraph(FILE *output, int **counter, int **elementsPointer, int size) {
+int print_graph(FILE *output, int **counter, int **elementsPointer, int size) {
     if (output == NULL)
         return BAD_FILE_STREAM_EXIT;
     for (size_t i = 0; i < size; ++i) {
@@ -65,5 +70,5 @@ int printGraph(FILE *output, int **counter, int **elementsPointer, int size) {
         fprintf(output, "%d time(s)", *counter[i]);
         fprintf(output, "%c", '\n');
     }
-    return COMMON_EXIT;
+    return COMMON_RETURN;
 }

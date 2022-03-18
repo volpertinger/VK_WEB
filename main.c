@@ -11,7 +11,6 @@
 #define MAX_PATH 260
 
 int main() {
-
     printf("Correct input: {input filename} {output filename}\n "
            "Input file: {array size} {array integer elements}\n");
     char filenameInput[MAX_PATH];
@@ -22,23 +21,21 @@ int main() {
     FILE *inputFile;
     if ((inputFile = fopen(filenameInput, "r")) == NULL)
         return 1;
-    int ***input = scanArray(inputFile);
+    int ***input = scan_array(inputFile);
     if (input == NULL) {
         fprintf(stderr, "%s : Wrong file data\n", filenameInput);
         return 1;
     }
     int *size = *input[0];
     int **array = input[1];
-    fclose(inputFile);
 
-    int ***result = getBarGraph(array, size);
+    int ***result = get_bar_graph(array, size);
     FILE *fileOutput;
     fileOutput = fopen(filenameOutput, "w");
-    if (printGraph(fileOutput, result[1], result[0], *size) == 1) {
+    if (print_graph(fileOutput, result[1], result[0], *size) == 1) {
         fprintf(stderr, "%s : Wrong file\n", filenameOutput);
         return 1;
     }
-    fclose(fileOutput);
     for (int i = 0; i < *size; ++i) {
         free(result[0][i]);
         free(result[1][i]);
@@ -47,5 +44,8 @@ int main() {
     free(result[0]);
     free(result[1]);
     free(result);
+
+    fclose(inputFile);
+    fclose(fileOutput);
     return 0;
 }
