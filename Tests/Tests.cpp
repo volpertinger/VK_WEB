@@ -50,12 +50,6 @@ TEST_F(TestVector, extend) {
 }
 
 class TestBarGraph : public ::testing::Test {
-protected:
-
-    void SetUp() {
-    }
-
-    void TearDown() {}
 };
 
 TEST_F(TestBarGraph, uniqueElementIndex) {
@@ -107,6 +101,8 @@ TEST_F(TestBarGraph, getBarGraph) {
     ASSERT_EQ(1, *result[1][5]);
     ASSERT_EQ(1, *result[1][6]);
     ASSERT_EQ(1, *result[1][7]);
+    free(result[0]);
+    free(result[1]);
     free(result);
 }
 

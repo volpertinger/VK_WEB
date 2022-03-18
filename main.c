@@ -20,27 +20,28 @@ int main() {
 
 
     FILE *inputFile;
-    inputFile = fopen(filenameInput, "r");
+    if ((inputFile = fopen(filenameInput, "r")) == NULL)
+        return 1;
     int ***input = scanArray(inputFile);
-    fclose(inputFile);
     if (input == NULL) {
         fprintf(stderr, "%s : Wrong file data\n", filenameInput);
         return 1;
     }
+    int *size = *input[0];
+    int **array = input[1];
+    fclose(inputFile);
 
-    int ***result = getBarGraph(input[1], *input[0]);
+    int ***result = getBarGraph(array, size);
     FILE *fileOutput;
     fileOutput = fopen(filenameOutput, "w");
-    if (printGraph(fileOutput, result[0], result[1], **input[0]) == 1) {
+    if (printGraph(fileOutput, result[1], result[0], *size) == 1) {
         fprintf(stderr, "%s : Wrong file\n", filenameOutput);
         return 1;
     }
-    fclose(filenameOutput);
-    for (int i = 0; i < 1; ++i) {
-        if (result[i] != NULL)
-            free(result[i]);
-        if (input[i] != NULL)
-            free(input[i]);
-    }
+    fclose(fileOutput);
+    free(input[1]);
+    free(result[0]);
+    free(result[1]);
+    free(result);
     return 0;
 }
