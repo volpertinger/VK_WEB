@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "Headers/BarGraph.h"
+#include "Headers/bar_graph.h"
 
 #define MAX_PATH 260
 

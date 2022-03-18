@@ -1,14 +1,14 @@
 #ifndef UNTITLED_BARGRAPH_H
 #define UNTITLED_BARGRAPH_H
 
-#include "Histogram.h"
+#include "histogram.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
 // Получаем индекс элемента (поиск по значению) в массиве уникальных элементов.
 // Если такого нет, то возвращается -1.
-int unique_element_index(int element, Histogram *vector);
+int unique_element_index(int element, histogram *vector);
 
 // Получаем по массиву исходных чисел два - один с указателями на уникальные элементы,
 // другой - с их количеством.

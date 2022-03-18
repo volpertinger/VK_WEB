@@ -2,16 +2,16 @@
 #include <fstream>
 
 extern "C" {
-#include "../Headers/Histogram.h"
-#include "../Headers/BarGraph.h"
+#include "../Headers/histogram.h"
+#include "../Headers/bar_graph.h"
 }
 
 class TestVector : public ::testing::Test {
 protected:
-    Histogram *vector{};
+    histogram *vector{};
 
     void SetUp() {
-        vector = Histogram_constructor(0);
+        vector = histogram_constructor(0);
     }
 
     void TearDown() {
@@ -36,7 +36,7 @@ TEST_F(TestVector, append) {
     int a[size];
     for (int i = 0; i < size; ++i) {
         a[i] = i;
-        Histogram_append(vector, &a[i]);
+        histogram_append(vector, &a[i]);
         ASSERT_EQ(&a[i], vector->arrayPointers[i]);
         ASSERT_EQ(1, *vector->arrayCounter[i]);
     }
@@ -47,7 +47,7 @@ TEST_F(TestVector, extend) {
     int a[size];
     for (int i = 0; i < size; ++i) {
         a[i] = i;
-        Histogram_append(vector, &a[i]);
+        histogram_append(vector, &a[i]);
     }
     ASSERT_EQ(5, vector->size);
     ASSERT_EQ(7, vector->maxSize);
@@ -57,12 +57,12 @@ class TestBarGraph : public ::testing::Test {
 };
 
 TEST_F(TestBarGraph, unique_element_index) {
-    Histogram *vector = Histogram_constructor(0);
+    histogram *vector = histogram_constructor(0);
     const int size = 5;
     int a[size];
     for (int i = 0; i < size; ++i) {
         a[i] = i;
-        Histogram_append(vector, &a[i]);
+        histogram_append(vector, &a[i]);
     }
     ASSERT_EQ(2, unique_element_index(2, vector));
     ASSERT_EQ(-1, unique_element_index(20, vector));

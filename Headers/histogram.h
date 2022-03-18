@@ -6,22 +6,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct Histogram {
+typedef struct histogram {
     size_t size; // размер массивов указателей на уникальные числа и счетчика
     size_t maxSize; // выделенная память под массив указателей и массив счетчика
     size_t extension; // коэффициент насколько увеличивать выделяемую память при релоцировании
     int **arrayPointers; // массив указателей на уникальные числа
     int **arrayCounter; // массив счетчика количества уникальных чисел
-} Histogram;
+} histogram;
 
 // конструктор, но если size = 0, то создаем с size = 1
-Histogram *Histogram_constructor(size_t size);
+histogram *histogram_constructor(size_t size);
 
 // расширение массив указателей
-void Histogram_extend(Histogram *vector);
+void histogram_extend(histogram *vector);
 
 // добавление указатель на элемент
-void Histogram_append(Histogram *vector, int *pointer);
+void histogram_append(histogram *vector, int *pointer);
 
 
 #endif

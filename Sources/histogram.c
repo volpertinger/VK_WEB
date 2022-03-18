@@ -1,9 +1,9 @@
-#include "../Headers/Histogram.h"
+#include "../Headers/histogram.h"
 
 
-Histogram *Histogram_constructor(size_t size) {
-    Histogram *result;
-    result = malloc(sizeof(Histogram));
+histogram *histogram_constructor(size_t size) {
+    histogram *result;
+    result = malloc(sizeof(histogram));
     result->size = 0;
     result->maxSize = size;
     result->extension = VECTOR_EXTENSION;
@@ -17,7 +17,7 @@ Histogram *Histogram_constructor(size_t size) {
     return result;
 }
 
-void Histogram_extend(Histogram *vector) {
+void histogram_extend(histogram *vector) {
     vector->maxSize = vector->maxSize * vector->extension + 1;
     int **newArrayPointers;
     newArrayPointers = malloc(sizeof(int *) * vector->maxSize);
@@ -34,9 +34,9 @@ void Histogram_extend(Histogram *vector) {
 }
 
 
-void Histogram_append(Histogram *vector, int *pointer) {
+void histogram_append(histogram *vector, int *pointer) {
     if (vector->size >= vector->maxSize) {
-        Histogram_extend(vector);
+        histogram_extend(vector);
     }
     vector->arrayPointers[vector->size] = pointer;
     int *newElement;

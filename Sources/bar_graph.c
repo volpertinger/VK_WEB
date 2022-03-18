@@ -1,9 +1,9 @@
-#include "../Headers/BarGraph.h"
+#include "../Headers/bar_graph.h"
 
 #define BAD_FILE_STREAM_EXIT 1
 #define COMMON_RETURN 0
 
-int unique_element_index(int element, Histogram *vector) {
+int unique_element_index(int element, histogram *vector) {
     for (size_t i = 0; i < vector->size; ++i) {
         if (element == (*vector->arrayPointers[i]))
             return (int) i;
@@ -15,17 +15,20 @@ int ***get_bar_graph(int **array, int *size) {
     if (size < 0 || array == NULL) {
         return NULL;
     }
-    Histogram *vector = Histogram_constructor(0);
+    histogram *vector = histogram_constructor(0);
     for (size_t i = 0; i < *size; ++i) {
         int index = unique_element_index(*array[i], vector);
         if (index == -1) {
-            Histogram_append(vector, array[i]);
+            histogram_append(vector, array[i]);
             continue;
         }
         ++(*vector->arrayCounter[index]);
     }
     int ***result;
     result = malloc(sizeof(int ***) * 2);
+    // NULL в концы массива, чтобы знать, где конец
+    histogram_append(vector, NULL);
+    vector->arrayPointers[vector->size - 1] = NULL;
     result[1] = vector->arrayCounter;
     result[0] = vector->arrayPointers;
     *size = (int) vector->size;
@@ -64,7 +67,7 @@ int ***scan_array(FILE *input) {
 int print_graph(FILE *output, int **counter, int **elementsPointer, int size) {
     if (output == NULL)
         return BAD_FILE_STREAM_EXIT;
-    for (size_t i = 0; i < size; ++i) {
+    for (size_t i = 0; i < size - 1; ++i) {
         fprintf(output, "number %d", *elementsPointer[i]);
         fprintf(output, " : ");
         fprintf(output, "%d time(s)", *counter[i]);
