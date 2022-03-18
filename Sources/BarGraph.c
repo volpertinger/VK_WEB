@@ -26,7 +26,6 @@ int ***getBarGraph(int **array, int *size) {
     int ***result = malloc(sizeof(int ***) * 2);
     result[1] = vector->arrayCounter;
     result[0] = vector->arrayPointers;
-    // fault down
     *size = (int) vector->size;
     Vector_partDestructor(vector);
     return result;

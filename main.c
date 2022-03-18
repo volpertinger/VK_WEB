@@ -39,6 +39,10 @@ int main() {
         return 1;
     }
     fclose(fileOutput);
+    for (int i = 0; i < *size; ++i) {
+        free(result[0][i]);
+        free(result[1][i]);
+    }
     free(input[1]);
     free(result[0]);
     free(result[1]);
