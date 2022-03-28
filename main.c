@@ -1,4 +1,4 @@
-//Составить программу расчета гистограммы, отражающей, сколько раз каждое число встречается в заданном массиве
+// Составить программу расчета гистограммы, отражающей, сколько раз каждое число встречается в заданном массиве
 // целых чисел. Расчет оформить в виде функции, получающей на вход массив указателей на целые числа.
 // На выход функция должна вернуть массив из двух указателей на массивы указателей (тройной указатель).
 // Первый массив должен содержать указатели на встречающиеся во входном массиве числа. Второй — количество повторений
@@ -11,8 +11,8 @@
 #define MAX_PATH 260
 
 int main() {
-    printf("Correct input: {input filename} {output filename}\n "
-           "Input file: {array size} {array integer elements}\n");
+    printf("Usage: {input filename} {output filename}\n "
+           "Data format: {array size} {array integer elements}\n");
     char filenameInput[MAX_PATH];
     char filenameOutput[MAX_PATH];
     scanf("%s %s", filenameInput, filenameOutput);

@@ -1,7 +1,7 @@
-#ifndef VK_EDUCATION_VECTOR_H
-#define VK_EDUCATION_VECTOR_H
+#ifndef VK_EDUCATION_HISTOGRAM_H
+#define VK_EDUCATION_HISTOGRAM_H
 
-#define VECTOR_EXTENSION  2;
+#define VECTOR_EXTENSION  2
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -20,7 +20,7 @@ histogram *histogram_constructor(size_t size);
 // расширение массив указателей
 void histogram_extend(histogram *vector);
 
-// добавление указатель на элемент
+// добавление указателя на уникальный элемент
 void histogram_append(histogram *vector, int *pointer);
 
 

@@ -1,6 +1,5 @@
 #include "../Headers/histogram.h"
 
-
 histogram *histogram_constructor(size_t size) {
     histogram *result;
     result = malloc(sizeof(histogram));
@@ -18,10 +17,10 @@ histogram *histogram_constructor(size_t size) {
 }
 
 void histogram_extend(histogram *vector) {
-    vector->maxSize = vector->maxSize * vector->extension + 1;
     int **newArrayPointers;
-    newArrayPointers = malloc(sizeof(int *) * vector->maxSize);
     int **newArrayCounter;
+    vector->maxSize = vector->maxSize * vector->extension + 1;
+    newArrayPointers = malloc(sizeof(int *) * vector->maxSize);
     newArrayCounter = malloc(sizeof(int *) * vector->maxSize);
     for (size_t i = 0; i < vector->size; ++i) {
         newArrayPointers[i] = vector->arrayPointers[i];

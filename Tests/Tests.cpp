@@ -16,7 +16,6 @@ protected:
 
     void TearDown() {
         for (int i = 0; i < vector->size; ++i) {
-            //free(vector->arrayPointers[i]);
             free(vector->arrayCounter[i]);
         }
         free(vector->arrayCounter);
@@ -25,7 +24,7 @@ protected:
     }
 };
 
-TEST_F(TestVector, constructor) {
+TEST_F(TestVector, constructor_empty) {
     ASSERT_EQ(vector->size, 0);
     ASSERT_EQ(vector->maxSize, 0);
     ASSERT_EQ(vector->extension, 2);
@@ -49,14 +48,14 @@ TEST_F(TestVector, extend) {
         a[i] = i;
         histogram_append(vector, &a[i]);
     }
-    ASSERT_EQ(5, vector->size);
+    ASSERT_EQ(size, vector->size);
     ASSERT_EQ(7, vector->maxSize);
 }
 
 class TestBarGraph : public ::testing::Test {
 };
 
-TEST_F(TestBarGraph, unique_element_index) {
+TEST_F(TestBarGraph, get_element_index) {
     histogram *vector = histogram_constructor(0);
     const int size = 5;
     int a[size];
@@ -64,8 +63,8 @@ TEST_F(TestBarGraph, unique_element_index) {
         a[i] = i;
         histogram_append(vector, &a[i]);
     }
-    ASSERT_EQ(2, unique_element_index(2, vector));
-    ASSERT_EQ(-1, unique_element_index(20, vector));
+    ASSERT_EQ(2, get_element_index(2, vector));
+    ASSERT_EQ(-1, get_element_index(20, vector));
     for (int i = 0; i < size; ++i) {
         free(vector->arrayCounter[i]);
     }
